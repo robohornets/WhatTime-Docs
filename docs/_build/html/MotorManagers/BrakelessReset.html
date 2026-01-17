@@ -1,0 +1,148 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brakeless Reset &mdash; WhatTime 2026.1.10 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f92bd288"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            WhatTime
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../setup/getting-started.html">Introduction</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">WhatTime</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Brakeless Reset</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/MotorManagers/BrakelessReset.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="brakeless-reset">
+<h1>Brakeless Reset<a class="headerlink" href="#brakeless-reset" title="Link to this heading"></a></h1>
+<p><img alt="Static Badge" src="https://img.shields.io/badge/Minimum_Version-v0.1.1-brightgreen" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This implementation will soon be replaced by a class more similar to PositionManager</p>
+</div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">com.btwrobotics.WhatTime.frc.MotorManagers.BrakelessReset</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>BrakelessReset is a WPILib Command that temporarily disables brake mode on a list of motors, allowing them to coast to a natural resting position. This is useful for recalibrating or zeroing encoders after the motors have moved freely.</p>
+<section id="constructor">
+<h2>Constructor<a class="headerlink" href="#constructor" title="Link to this heading"></a></h2>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="nf">BrakelessReset</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">duration</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">BrakelessReset</span><span class="p">.</span><span class="na">MotorResetPair</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pairs</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>duration</strong>: How long (in seconds) to wait before running the reset actions.</p></li>
+<li><p><strong>pairs</strong>: A list of motor/action pairs that define which motors to set to coast and what reset action to run.</p></li>
+</ul>
+</section>
+<section id="motorresetpair">
+<h2>MotorResetPair<a class="headerlink" href="#motorresetpair" title="Link to this heading"></a></h2>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MotorResetPair</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">MotorWrapper</span><span class="w"> </span><span class="n">motor</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Runnable</span><span class="w"> </span><span class="n">resetAction</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Each motor is bundled with a Runnable that executes when the duration ends. This allows encoder zeroing or any custom logic.</p>
+</section>
+<section id="lifecycle-methods">
+<h2>Lifecycle Methods<a class="headerlink" href="#lifecycle-methods" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">initialize()</span></code>: Sets all motors to Coast mode and starts a timer.</p>
+<p><code class="docutils literal notranslate"><span class="pre">isFinished()</span></code>: Returns true once the specified duration has elapsed.</p>
+<p><code class="docutils literal notranslate"><span class="pre">end()</span></code>: Runs each resetAction when the command finishes or is interrupted.</p>
+<p>Example Usage</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">MotorWrapper</span><span class="w"> </span><span class="n">armMotor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MotorWrapper</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">TalonFX</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<span class="n">Runnable</span><span class="w"> </span><span class="n">zeroEncoder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">armMotor</span><span class="p">.</span><span class="na">getMotor</span><span class="p">().</span><span class="na">setPosition</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="n">BrakelessReset</span><span class="p">.</span><span class="na">MotorResetPair</span><span class="w"> </span><span class="n">pair</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BrakelessReset</span><span class="p">.</span><span class="na">MotorResetPair</span><span class="p">(</span><span class="n">armMotor</span><span class="p">,</span><span class="w"> </span><span class="n">zeroEncoder</span><span class="p">);</span>
+<span class="n">BrakelessReset</span><span class="w"> </span><span class="n">resetCommand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BrakelessReset</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">pair</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>This command disables braking on armMotor for 1.5 seconds, allowing the arm to drop to its lowest point, and then zeroes the encoder.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, 1209 Robohornets.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

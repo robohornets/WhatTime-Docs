@@ -1,0 +1,160 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Position Manager &mdash; WhatTime 2026.1.10 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f92bd288"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            WhatTime
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../setup/getting-started.html">Introduction</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">WhatTime</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Position Manager</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/MotorManagers/PositionManager.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="position-manager">
+<h1>Position Manager<a class="headerlink" href="#position-manager" title="Link to this heading"></a></h1>
+<p><img alt="Static Badge" src="https://img.shields.io/badge/Minimum_Version-v0.1.1-brightgreen" /></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">com.btwrobotics.WhatTime.frc.MotorManagers.PositionManager</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>PositionManager takes in an array of MotorWrapper objects. It will then automatically move the motors to the specified position. All motors will be moved to the same position, so it is important to use the <code class="docutils literal notranslate"><span class="pre">inverted</span></code> parameter if necessary.</p>
+<p>This class does not work well if the sensor only ranges from 0 to 1 and resets. If that is the case, you will either need to limit it to a minimum and maximum within the same rotation or create a method to count the number of rotations.</p>
+<section id="constructor">
+<h2>Constructor<a class="headerlink" href="#constructor" title="Link to this heading"></a></h2>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="nf">PositionManager</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">minValue</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">maxValue</span><span class="p">,</span>
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">MotorWrapper</span><span class="o">&gt;</span><span class="w"> </span><span class="n">motors</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">motorSpeed</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">holdSpeed</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">threshold</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">currentAngleSupplier</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">minValue</span></code>: The lowest allowed value for the motors. This should be found manually before running by starting the motor at zero, moving it to the desired position, and viewing the value in ShuffleBoard.</p>
+<p><code class="docutils literal notranslate"><span class="pre">maxValue</span></code>: The highest allowed value for the motors. This should be found manually before running by starting the motor at zero, moving it to the desired position, and viewing the value in ShuffleBoard.</p>
+<p><code class="docutils literal notranslate"><span class="pre">motors</span></code>: A list of MotorWrapper objects. All these motors will be moved to the desired position.</p>
+<p><code class="docutils literal notranslate"><span class="pre">motorSpeed</span></code>: A double value that will be set for the speed of the motors. Individual motor direction is automatically managed based on the <code class="docutils literal notranslate"><span class="pre">inverted</span></code> parameter of the MotorWrapper. Positive is the forwards direction. Negative is backwards. These still respect the <code class="docutils literal notranslate"><span class="pre">inverted</span></code> parameter though. That means an inverted motor set to a negative speed turns the same way as a non-inverted motor set to a positive speed.</p>
+<p><code class="docutils literal notranslate"><span class="pre">holdSpeed</span></code>: If the brakes are not enough to hold up the part, you can set a hold speed. You should find this by starting small and testing higher values until it no longer falls. It will set the motors to this speed whenever they are not running another command.</p>
+<p><code class="docutils literal notranslate"><span class="pre">threshold</span></code>: The range the method will deem “acceptable” before ending. A smaller value will result in better precision, but is also more likely to over or undershoot requiring more time and a lower motor speed. It is very important to get this value correct for everything to work well.</p>
+<p><code class="docutils literal notranslate"><span class="pre">currentAngleSupplier</span></code>: Gets an updating angle value from a sensor.</p>
+</section>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">move()</span></code>: Moves to a specified position</p>
+<p><code class="docutils literal notranslate"><span class="pre">getTarget()</span></code>: Returns the PositionManager target as a double</p>
+<p><code class="docutils literal notranslate"><span class="pre">stop()</span></code>: Sets all motors to the specified hold speed</p>
+</section>
+<section id="example-usage">
+<h2>Example Usage<a class="headerlink" href="#example-usage" title="Link to this heading"></a></h2>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">PositionManager</span><span class="w"> </span><span class="n">positionManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PositionManager</span><span class="p">(</span>
+<span class="w">    </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">    </span><span class="mf">50.0</span><span class="p">,</span>
+<span class="w">    </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">MotorWrapper</span><span class="p">(</span><span class="n">leftMotor</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">),</span>
+<span class="w">        </span><span class="k">new</span><span class="w">  </span><span class="n">MotorWrapper</span><span class="p">(</span><span class="n">rightMotor</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
+<span class="w">    </span><span class="p">),</span>
+<span class="w">    </span><span class="mf">0.5</span><span class="p">,</span>
+<span class="w">    </span><span class="mf">0.05</span><span class="p">,</span>
+<span class="w">    </span><span class="mf">2.0</span><span class="p">,</span>
+<span class="w">    </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">subsystem</span><span class="p">.</span><span class="na">getDoubleForSupplier</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">positionManager</span><span class="p">.</span><span class="na">move</span><span class="p">(</span><span class="n">targetPosition</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will create two new MotorWrapper objects and set the rest of the parameters to run the position manager.</p>
+<p><strong>Note: Generally, MotorWrappers should not be created inside the List. This is only for demonstration purposes. Instead, they should be defined once and referenced throughout the code.</strong></p>
+<p>To create a supplier, we can use a lambda as seen in the last line. This automatically converts the method—which returns a double—into Supplier&lt;Double&gt;.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, 1209 Robohornets.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

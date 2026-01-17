@@ -7,12 +7,21 @@ WhatTime is a package designed by team 1209 for Java in FIRST Robotics. It aims 
 :maxdepth: 1
 :caption: Getting Started
 
-setup/getting-started
+Setup/GettingStarted
 ```
+
 ```{toctree}
 :maxdepth: 1
 :caption: Motor Managers
 
-motor-managers/position-manager
-motor-managers/brakeless-reset
+MotorManagers/PositionManager
+MotorManagers/BrakelessReset
+```
+
+```{toctree}
+:maxdepth: 1
+:caption: Dashboard Managers
+
+DashboardManagers/NetworkTablesUtil
+DashboardManagers/ShuffleboardUtil
 ```
