@@ -1,0 +1,171 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MotorWrapper &mdash; WhatTime 2026.1.10 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f92bd288"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            WhatTime
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Setup/GettingStarted.html">Introduction</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Motor Managers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="PositionManager.html">Position Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BrakelessReset.html">Brakeless Reset</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dashboard Managers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DashboardManagers/NetworkTablesUtil.html">NetworkTablesUtil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DashboardManagers/ShuffleboardUtil.html">ShuffleboardUtil</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">WhatTime</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">MotorWrapper</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/MotorManagers/MotorWrapper.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="motorwrapper">
+<h1>MotorWrapper<a class="headerlink" href="#motorwrapper" title="Link to this heading"></a></h1>
+<p><img alt="Static Badge" src="https://img.shields.io/badge/Minimum_Version-v0.1.1-brightgreen" /></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">com.btwrobotics.WhatTime.frc.MotorManagers.MotorWrapper</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The MotorWrapper class wraps a TalonFX motor object and allows direction inversion logic to be built-in to simplify use across other classes.</p>
+<section id="constructor">
+<h2>Constructor<a class="headerlink" href="#constructor" title="Link to this heading"></a></h2>
+<p>Creates a new MotorWrapper with the specified motor and inversion setting:</p>
+<ul class="simple">
+<li><p>motor: The TalonFX motor instance.</p></li>
+<li><p>inverted: Whether the motor’s direction should be inverted by default.</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="nf">MotorWrapper</span><span class="p">(</span><span class="n">TalonFX</span><span class="w"> </span><span class="n">motor</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">inverted</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="static-helper-method">
+<h2>Static Helper Method<a class="headerlink" href="#static-helper-method" title="Link to this heading"></a></h2>
+<p>Convenience method for creating a MotorWrapper using a static syntax:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">MotorWrapper</span><span class="w"> </span><span class="nf">of</span><span class="p">(</span><span class="n">TalonFX</span><span class="w"> </span><span class="n">motor</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">inverted</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Link to this heading"></a></h2>
+<section id="applies-speed-to-the-motor-respecting-the-inversion-setting">
+<h3>Applies speed to the motor, respecting the inversion setting:<a class="headerlink" href="#applies-speed-to-the-motor-respecting-the-inversion-setting" title="Link to this heading"></a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">set</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">speed</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="return-the-underlying-talonfx-motor-object">
+<h3>Return the underlying TalonFX motor object:<a class="headerlink" href="#return-the-underlying-talonfx-motor-object" title="Link to this heading"></a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="n">TalonFX</span><span class="w"> </span><span class="nf">getMotor</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="returns-whether-this-wrapper-inverts-the-motor-direction">
+<h3>Returns whether this wrapper inverts the motor direction:<a class="headerlink" href="#returns-whether-this-wrapper-inverts-the-motor-direction" title="Link to this heading"></a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">isInverted</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="example-usage">
+<h2>Example Usage<a class="headerlink" href="#example-usage" title="Link to this heading"></a></h2>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">TalonFX</span><span class="w"> </span><span class="n">myMotor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TalonFX</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">MotorWrapper</span><span class="w"> </span><span class="n">wrapper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MotorWrapper</span><span class="p">(</span><span class="n">myMotor</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+
+<span class="c1">// Or using the static constructor</span>
+<span class="n">MotorWrapper</span><span class="w"> </span><span class="n">wrapper2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MotorWrapper</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">TalonFX</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+
+<span class="n">wrapper</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span><span class="w"> </span><span class="c1">// Sets the motor to -0.5 due to inversion</span>
+<span class="kt">boolean</span><span class="w"> </span><span class="n">inverted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wrapper</span><span class="p">.</span><span class="na">isInverted</span><span class="p">();</span><span class="w"> </span><span class="c1">// true</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, 1209 Robohornets.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

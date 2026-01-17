@@ -14,6 +14,7 @@ Setup/GettingStarted
 :maxdepth: 1
 :caption: Motor Managers
 
+MotorManagers/MotorWrapper
 MotorManagers/PositionManager
 MotorManagers/BrakelessReset
 ```
@@ -24,4 +25,11 @@ MotorManagers/BrakelessReset
 
 DashboardManagers/NetworkTablesUtil
 DashboardManagers/ShuffleboardUtil
+```
+
+```{toctree}
+:maxdepth: 1
+:caption: Yearly Methods
+
+YearlyMethods/Rebuilt/RebuiltHubManager
 ```
