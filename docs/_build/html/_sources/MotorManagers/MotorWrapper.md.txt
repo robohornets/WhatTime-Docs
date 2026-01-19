@@ -1,4 +1,4 @@
-# MotorWrapper
+# Motor Wrapper
 ![Static Badge](https://img.shields.io/badge/Minimum_Version-v0.1.1-brightgreen)
 
 ```java

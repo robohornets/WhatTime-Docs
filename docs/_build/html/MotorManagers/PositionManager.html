@@ -18,7 +18,9 @@
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Brakeless Reset" href="BrakelessReset.html" />
+    <link rel="prev" title="MotorWrapper" href="MotorWrapper.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,7 +44,32 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../setup/getting-started.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Setup/GettingStarted.html">Introduction</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Motor Managers</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="MotorWrapper.html">MotorWrapper</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Position Manager</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#constructor">Constructor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#methods">Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-usage">Example Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="BrakelessReset.html">Brakeless Reset</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dashboard Managers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DashboardManagers/NetworkTablesUtil.html">NetworkTablesUtil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DashboardManagers/ShuffleboardUtil.html">ShuffleboardUtil</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Driver Station</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DriverStation/AllianceManager.html">AllianceManager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DriverStation/MatchTimeManager.html">MatchTimeManager</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Yearly Methods</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../YearlyMethods/Rebuilt/RebuiltHubManager.html">2026 - RebuiltHubManager</a></li>
 </ul>
 
         </div>
@@ -77,6 +104,7 @@
 </div>
 <p>PositionManager takes in an array of MotorWrapper objects. It will then automatically move the motors to the specified position. All motors will be moved to the same position, so it is important to use the <code class="docutils literal notranslate"><span class="pre">inverted</span></code> parameter if necessary.</p>
 <p>This class does not work well if the sensor only ranges from 0 to 1 and resets. If that is the case, you will either need to limit it to a minimum and maximum within the same rotation or create a method to count the number of rotations.</p>
+<hr class="docutils" />
 <section id="constructor">
 <h2>Constructor<a class="headerlink" href="#constructor" title="Link to this heading"></a></h2>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="nf">PositionManager</span><span class="p">(</span>
@@ -90,20 +118,52 @@
 <span class="p">)</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">minValue</span></code>: The lowest allowed value for the motors. This should be found manually before running by starting the motor at zero, moving it to the desired position, and viewing the value in ShuffleBoard.</p>
-<p><code class="docutils literal notranslate"><span class="pre">maxValue</span></code>: The highest allowed value for the motors. This should be found manually before running by starting the motor at zero, moving it to the desired position, and viewing the value in ShuffleBoard.</p>
-<p><code class="docutils literal notranslate"><span class="pre">motors</span></code>: A list of MotorWrapper objects. All these motors will be moved to the desired position.</p>
-<p><code class="docutils literal notranslate"><span class="pre">motorSpeed</span></code>: A double value that will be set for the speed of the motors. Individual motor direction is automatically managed based on the <code class="docutils literal notranslate"><span class="pre">inverted</span></code> parameter of the MotorWrapper. Positive is the forwards direction. Negative is backwards. These still respect the <code class="docutils literal notranslate"><span class="pre">inverted</span></code> parameter though. That means an inverted motor set to a negative speed turns the same way as a non-inverted motor set to a positive speed.</p>
-<p><code class="docutils literal notranslate"><span class="pre">holdSpeed</span></code>: If the brakes are not enough to hold up the part, you can set a hold speed. You should find this by starting small and testing higher values until it no longer falls. It will set the motors to this speed whenever they are not running another command.</p>
-<p><code class="docutils literal notranslate"><span class="pre">threshold</span></code>: The range the method will deem “acceptable” before ending. A smaller value will result in better precision, but is also more likely to over or undershoot requiring more time and a lower motor speed. It is very important to get this value correct for everything to work well.</p>
-<p><code class="docutils literal notranslate"><span class="pre">currentAngleSupplier</span></code>: Gets an updating angle value from a sensor.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">minValue</span></code></p>
+<ul>
+<li><p>The lowest allowed value for the motors. This should be found manually before running by starting the motor at zero, moving it to the desired position, and viewing the value in ShuffleBoard.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxValue</span></code></p>
+<ul>
+<li><p>The highest allowed value for the motors. This should be found manually before running by starting the motor at zero, moving it to the desired position, and viewing the value in ShuffleBoard.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">motors</span></code></p>
+<ul>
+<li><p>A list of MotorWrapper objects. All these motors will be moved to the desired position.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">motorSpeed</span></code></p>
+<ul>
+<li><p>A double value that will be set for the speed of the motors. Individual motor direction is automatically managed based on the <code class="docutils literal notranslate"><span class="pre">inverted</span></code> parameter of the MotorWrapper. Positive is the forwards direction. Negative is backwards. These still respect the <code class="docutils literal notranslate"><span class="pre">inverted</span></code> parameter though. That means an inverted motor set to a negative speed turns the same way as a non-inverted motor set to a positive speed.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">holdSpeed</span></code></p>
+<ul>
+<li><p>If the brakes are not enough to hold up the part, you can set a hold speed. You should find this by starting small and testing higher values until it no longer falls. It will set the motors to this speed whenever they are not running another command.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">threshold</span></code></p>
+<ul>
+<li><p>The range the method will deem “acceptable” before ending. A smaller value will result in better precision, but is also more likely to over or undershoot requiring more time and a lower motor speed. It is very important to get this value correct for everything to work well.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">currentAngleSupplier</span></code></p>
+<ul>
+<li><p>Gets an updating angle value from a sensor.</p></li>
+</ul>
+</li>
+</ul>
 </section>
+<hr class="docutils" />
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">move()</span></code>: Moves to a specified position</p>
 <p><code class="docutils literal notranslate"><span class="pre">getTarget()</span></code>: Returns the PositionManager target as a double</p>
 <p><code class="docutils literal notranslate"><span class="pre">stop()</span></code>: Sets all motors to the specified hold speed</p>
 </section>
+<hr class="docutils" />
 <section id="example-usage">
 <h2>Example Usage<a class="headerlink" href="#example-usage" title="Link to this heading"></a></h2>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">PositionManager</span><span class="w"> </span><span class="n">positionManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PositionManager</span><span class="p">(</span>
@@ -132,7 +192,10 @@
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="MotorWrapper.html" class="btn btn-neutral float-left" title="MotorWrapper" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="BrakelessReset.html" class="btn btn-neutral float-right" title="Brakeless Reset" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

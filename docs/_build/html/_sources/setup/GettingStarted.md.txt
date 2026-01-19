@@ -3,3 +3,9 @@
 ```
 https://raw.githubusercontent.com/robohornets/WhatTime/refs/heads/main/WhatTime.json
 ```
+
+## Requirements
+WhatTime was designed for the 2026 FRC season and later. Certain classes support 2025 by using older versions.
+```{note}
+If something says it has a minimum version of v0.1.1, then it supports WPILib 2025.
+```

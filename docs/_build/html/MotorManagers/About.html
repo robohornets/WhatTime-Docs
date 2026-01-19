@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Smart Brake &mdash; WhatTime 2026.1.10 documentation</title>
+  <title>About MotorManagers &mdash; WhatTime 2026.1.10 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
@@ -18,7 +18,9 @@
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Motor Wrapper" href="MotorWrapper.html" />
+    <link rel="prev" title="Introduction" href="../Setup/GettingStarted.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,11 +47,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../Setup/GettingStarted.html">Introduction</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Motor Managers</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../MotorManagers/About.html">About MotorManagers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../MotorManagers/MotorWrapper.html">Motor Wrapper</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../MotorManagers/PositionManager.html">Position Manager</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../MotorManagers/BrakelessReset.html">Brakeless Reset</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">About MotorManagers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#classes">Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="MotorWrapper.html">Motor Wrapper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PositionManager.html">Position Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BrakelessReset.html">Brakeless Reset</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Dashboard Managers</span></p>
 <ul>
@@ -80,9 +85,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Smart Brake</li>
+      <li class="breadcrumb-item active">About MotorManagers</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/SmartBrake/SmartBrake.md.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/MotorManagers/About.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -90,15 +95,27 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="smart-brake">
-<h1>Smart Brake<a class="headerlink" href="#smart-brake" title="Link to this heading"></a></h1>
-<p>This doesn’t actually work yet. Just don’t use it.</p>
+  <section id="about-motormanagers">
+<h1>About MotorManagers<a class="headerlink" href="#about-motormanagers" title="Link to this heading"></a></h1>
+<p>In WhatTime, MotorManagers are a set of classes that allow for simplified control of motors. Currently, only TalonFX motors are supported, but support for more types is planned.</p>
+<hr class="docutils" />
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MotorWrapper</span></code>: Wraps a TalonFX object and allows simplified inversion of the motor’s direction.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PositionManager</span></code>: Takes in parameters and creates commands to move motors to certain positions based on sensor input.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BrakelessReset</span></code>: Disables brakes, allows mechanism to fall to a neutral position, resets the motor position, and then re-enables brakes.</p></li>
+</ul>
+</section>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Setup/GettingStarted.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="MotorWrapper.html" class="btn btn-neutral float-right" title="Motor Wrapper" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

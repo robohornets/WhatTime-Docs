@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MotorWrapper &mdash; WhatTime 2026.1.10 documentation</title>
+  <title>Motor Wrapper &mdash; WhatTime 2026.1.10 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
@@ -18,7 +18,9 @@
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Position Manager" href="PositionManager.html" />
+    <link rel="prev" title="About MotorManagers" href="About.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,7 +47,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../Setup/GettingStarted.html">Introduction</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Motor Managers</span></p>
-<ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="About.html">About MotorManagers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Motor Wrapper</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#constructor">Constructor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#static-helper-method">Static Helper Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#methods">Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#applies-speed-to-the-motor-respecting-the-inversion-setting">Applies speed to the motor, respecting the inversion setting:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#return-the-underlying-talonfx-motor-object">Return the underlying TalonFX motor object:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#returns-whether-this-wrapper-inverts-the-motor-direction">Returns whether this wrapper inverts the motor direction:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#example-usage">Example Usage</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="PositionManager.html">Position Manager</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BrakelessReset.html">Brakeless Reset</a></li>
 </ul>
@@ -53,6 +68,15 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../DashboardManagers/NetworkTablesUtil.html">NetworkTablesUtil</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../DashboardManagers/ShuffleboardUtil.html">ShuffleboardUtil</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Driver Station</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DriverStation/AllianceManager.html">Alliance Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DriverStation/MatchTimeManager.html">Match Time Manager</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Yearly Methods</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../YearlyMethods/Rebuilt/RebuiltHubManager.html">2026 - RebuiltHubManager</a></li>
 </ul>
 
         </div>
@@ -69,7 +93,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">MotorWrapper</li>
+      <li class="breadcrumb-item active">Motor Wrapper</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/MotorManagers/MotorWrapper.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -79,8 +103,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="motorwrapper">
-<h1>MotorWrapper<a class="headerlink" href="#motorwrapper" title="Link to this heading"></a></h1>
+  <section id="motor-wrapper">
+<h1>Motor Wrapper<a class="headerlink" href="#motor-wrapper" title="Link to this heading"></a></h1>
 <p><img alt="Static Badge" src="https://img.shields.io/badge/Minimum_Version-v0.1.1-brightgreen" /></p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">com.btwrobotics.WhatTime.frc.MotorManagers.MotorWrapper</span><span class="p">;</span>
 </pre></div>
@@ -143,7 +167,10 @@
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="About.html" class="btn btn-neutral float-left" title="About MotorManagers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="PositionManager.html" class="btn btn-neutral float-right" title="Position Manager" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
