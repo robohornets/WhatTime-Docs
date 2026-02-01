@@ -18,13 +18,20 @@ public RebuiltHubManager(MatchTimeManager matchTimeManager) {
 RebuiltHubManager rebuiltHubManager = new RebuiltHubManager(matchTimeManager);
 ```
 
-`matchTimeManager`: A class from WhatTime that keeps track of time in the current match.
+- `matchTimeManager`: A class from WhatTime that keeps track of time in the current match.
 
 ---
 
 ## Methods & Usage
-`updateInitialInactiveAlliance()`: Updates which alliance is inactive first based on the results from autonomous.
 
+For this class to work, you must call the methods `updateInitialInactiveAlliance()` and `scheduleAllInactiveHubChanges()` in your robot code.
+
+### Updates which alliance is inactive first based on the results from autonomous:
+```java
+public void updateInitialInactiveAlliance()
+```
+
+**Example Usage in RobotContainer.java:**
 ```java
 @Override
 public void teleopInit() {
@@ -34,8 +41,32 @@ public void teleopInit() {
 
 ---
 
-`scheduleAllInactiveHubChanges()`: Adds triggers at times to change the hub status. Should be called only once.
+### Returns the alliance that is inactive first:
+```java
+public Optional<Alliance> getInactiveFirstAlliance()
+```
 
+```{note}
+Requires v2026.1.15 or later
+```
+
+---
+
+### Returns true if the current team's hub is active:
+```java
+public boolean hubIsActive()
+```
+
+---
+
+### Add triggers at times to change the hub status:
+This should be called only once.
+
+```java
+public void scheduleAllInactiveHubChanges()
+```
+
+**Example Usage in RobotContainer.java:**
 ```java
 @Override
 public void robotInit() {
@@ -45,15 +76,12 @@ public void robotInit() {
 
 ---
 
-`hubIsActive()`: Returns true if the hub is active for the current alliance.
-
+### Put a list of all past and upcoming events to NetworkTables:
 ```java
-rebuiltHubManager.hubIsActive();
+putPhasesToNetworkTables()
 ```
 
----
-
-`putPhasesToNetworkTables()`: Puts a list of all past and upcoming events to NetworkTables.
+**Example Usage in RobotContainer.java:**
 ```java
 @Override
 public void robotPeriodic() {

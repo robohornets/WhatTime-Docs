@@ -19,7 +19,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="ShuffleboardUtil" href="../../DashboardManagers/ShuffleboardUtil.html" /> 
+    <link rel="prev" title="Match Time Manager" href="../../DriverStation/MatchTimeManager.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,7 +47,8 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Motor Managers</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../MotorManagers/MotorWrapper.html">MotorWrapper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../MotorManagers/About.html">About MotorManagers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../MotorManagers/MotorWrapper.html">Motor Wrapper</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../MotorManagers/PositionManager.html">Position Manager</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../MotorManagers/BrakelessReset.html">Brakeless Reset</a></li>
 </ul>
@@ -56,11 +57,23 @@
 <li class="toctree-l1"><a class="reference internal" href="../../DashboardManagers/NetworkTablesUtil.html">NetworkTablesUtil</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../DashboardManagers/ShuffleboardUtil.html">ShuffleboardUtil</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Driver Station</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../DriverStation/AllianceManager.html">Alliance Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../DriverStation/MatchTimeManager.html">Match Time Manager</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Yearly Methods</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">2026 - RebuiltHubManager</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#constructor">Constructor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#methods-usage">Methods &amp; Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#methods-usage">Methods &amp; Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#updates-which-alliance-is-inactive-first-based-on-the-results-from-autonomous">Updates which alliance is inactive first based on the results from autonomous:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#returns-the-alliance-that-is-inactive-first">Returns the alliance that is inactive first:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#returns-true-if-the-current-team-s-hub-is-active">Returns true if the current team’s hub is active:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-triggers-at-times-to-change-the-hub-status">Add triggers at times to change the hub status:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#put-a-list-of-all-past-and-upcoming-events-to-networktables">Put a list of all past and upcoming events to NetworkTables:</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -107,33 +120,67 @@
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">RebuiltHubManager</span><span class="w"> </span><span class="n">rebuiltHubManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RebuiltHubManager</span><span class="p">(</span><span class="n">matchTimeManager</span><span class="p">);</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">matchTimeManager</span></code>: A class from WhatTime that keeps track of time in the current match.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">matchTimeManager</span></code>: A class from WhatTime that keeps track of time in the current match.</p></li>
+</ul>
 </section>
 <hr class="docutils" />
 <section id="methods-usage">
 <h2>Methods &amp; Usage<a class="headerlink" href="#methods-usage" title="Link to this heading"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">updateInitialInactiveAlliance()</span></code>: Updates which alliance is inactive first based on the results from autonomous.</p>
+<p>For this class to work, you must call the methods <code class="docutils literal notranslate"><span class="pre">updateInitialInactiveAlliance()</span></code> and <code class="docutils literal notranslate"><span class="pre">scheduleAllInactiveHubChanges()</span></code> in your robot code.</p>
+<section id="updates-which-alliance-is-inactive-first-based-on-the-results-from-autonomous">
+<h3>Updates which alliance is inactive first based on the results from autonomous:<a class="headerlink" href="#updates-which-alliance-is-inactive-first-based-on-the-results-from-autonomous" title="Link to this heading"></a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">updateInitialInactiveAlliance</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Example Usage in RobotContainer.java:</strong></p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Override</span>
 <span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">teleopInit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">rebuiltHubManager</span><span class="p">.</span><span class="na">updateInitialInactiveAlliance</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
 </div>
+</section>
 <hr class="docutils" />
-<p><code class="docutils literal notranslate"><span class="pre">scheduleAllInactiveHubChanges()</span></code>: Adds triggers at times to change the hub status. Should be called only once.</p>
+<section id="returns-the-alliance-that-is-inactive-first">
+<h3>Returns the alliance that is inactive first:<a class="headerlink" href="#returns-the-alliance-that-is-inactive-first" title="Link to this heading"></a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Alliance</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getInactiveFirstAlliance</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Requires v2026.1.15 or later</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="returns-true-if-the-current-team-s-hub-is-active">
+<h3>Returns true if the current team’s hub is active:<a class="headerlink" href="#returns-true-if-the-current-team-s-hub-is-active" title="Link to this heading"></a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">hubIsActive</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="add-triggers-at-times-to-change-the-hub-status">
+<h3>Add triggers at times to change the hub status:<a class="headerlink" href="#add-triggers-at-times-to-change-the-hub-status" title="Link to this heading"></a></h3>
+<p>This should be called only once.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">scheduleAllInactiveHubChanges</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Example Usage in RobotContainer.java:</strong></p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Override</span>
 <span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">robotInit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">rebuiltHubManager</span><span class="p">.</span><span class="na">scheduleAllInactiveHubChanges</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
 </div>
+</section>
 <hr class="docutils" />
-<p><code class="docutils literal notranslate"><span class="pre">hubIsActive()</span></code>: Returns true if the hub is active for the current alliance.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">rebuiltHubManager</span><span class="p">.</span><span class="na">hubIsActive</span><span class="p">();</span>
+<section id="put-a-list-of-all-past-and-upcoming-events-to-networktables">
+<h3>Put a list of all past and upcoming events to NetworkTables:<a class="headerlink" href="#put-a-list-of-all-past-and-upcoming-events-to-networktables" title="Link to this heading"></a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">putPhasesToNetworkTables</span><span class="p">()</span>
 </pre></div>
 </div>
-<hr class="docutils" />
-<p><code class="docutils literal notranslate"><span class="pre">putPhasesToNetworkTables()</span></code>: Puts a list of all past and upcoming events to NetworkTables.</p>
+<p><strong>Example Usage in RobotContainer.java:</strong></p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Override</span>
 <span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">robotPeriodic</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">rebuiltHubManager</span><span class="p">.</span><span class="na">putPhasesToNetworkTables</span><span class="p">();</span>
@@ -142,12 +189,13 @@
 </div>
 </section>
 </section>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../../DashboardManagers/ShuffleboardUtil.html" class="btn btn-neutral float-left" title="ShuffleboardUtil" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../DriverStation/MatchTimeManager.html" class="btn btn-neutral float-left" title="Match Time Manager" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
