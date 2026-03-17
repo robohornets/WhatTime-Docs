@@ -1,6 +1,10 @@
 # Motor Wrapper
 ![Static Badge](https://img.shields.io/badge/Minimum_Version-v0.1.1-brightgreen)
 
+```{deprecated} v2026.2.1
+`MotorWrapper` has been replaced by `Motor`.
+```
+
 ```java
 import com.btwrobotics.WhatTime.frc.MotorManagers.MotorWrapper;
 ```

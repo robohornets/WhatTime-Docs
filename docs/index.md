@@ -25,6 +25,7 @@ Setup/GettingStarted
 :caption: Motor Managers
 
 MotorManagers/About
+MotorManagers/Motor
 MotorManagers/MotorWrapper
 MotorManagers/PositionManager
 MotorManagers/BrakelessReset

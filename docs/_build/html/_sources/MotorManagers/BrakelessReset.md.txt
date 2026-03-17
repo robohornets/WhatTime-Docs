@@ -1,8 +1,8 @@
 # Brakeless Reset
 ![Static Badge](https://img.shields.io/badge/Minimum_Version-v0.1.1-brightgreen)
 
-```{note}
-This implementation will soon be replaced by a class more similar to PositionManager
+```{deprecated} v2026.2.1
+`BrakelessReset` has been replaced by `Motor`.
 ```
 
 ```java

@@ -4,6 +4,7 @@ In WhatTime, MotorManagers are a set of classes that allow for simplified contro
 ---
 
 ## Classes
+- `Motor`: Introduced in v2026.2.1 to simplify motor motor managers into a single class.
 - `MotorWrapper`: Wraps a TalonFX object and allows simplified inversion of the motor's direction.
 - `PositionManager`: Takes in parameters and creates commands to move motors to certain positions based on sensor input.
 - `BrakelessReset`: Disables brakes, allows mechanism to fall to a neutral position, resets the motor position, and then re-enables brakes.

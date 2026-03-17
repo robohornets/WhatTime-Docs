@@ -1,6 +1,10 @@
 # Position Manager
 ![Static Badge](https://img.shields.io/badge/Minimum_Version-v0.1.1-brightgreen)
 
+```{deprecated} v2026.2.1
+`PositionManager` has been replaced by `Motor` position management.
+```
+
 ```java
 import com.btwrobotics.WhatTime.frc.MotorManagers.PositionManager;
 ```
